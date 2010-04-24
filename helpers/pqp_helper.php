@@ -123,7 +123,8 @@ class pqp_pi
     	foreach ($profile as $key => $val)
     	{
     		$key = ucwords(str_replace(array('_', '-'), ' ', $key));			
-    		Console::log('CI BENCHMARK - '.$key.': '.$val);
+    		Console::log($key.': '.$val);
+			Console::logSpeed($key.': '.$val);
     	}
 	
     	Console::log('GET: '.print_r($_GET, TRUE));

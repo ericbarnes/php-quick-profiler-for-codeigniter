@@ -337,7 +337,7 @@ else {
 
 echo '</div>';
 
-echo <<<FOOTER
+echo '
 	<table id="pqp-footer" cellspacing="0">
 		<tr>
 			<td class="credit">
@@ -351,7 +351,7 @@ echo <<<FOOTER
 			</td>
 		</tr>
 	</table>
-FOOTER;
+';
 		
 echo '</div></div>';
 

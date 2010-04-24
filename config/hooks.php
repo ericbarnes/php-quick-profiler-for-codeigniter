@@ -13,32 +13,40 @@
 $hook['pre_system'][] = array(
                                 'class'    => NULL,
                                 'function' => 'pqp_static',
-                                'filename' => 'pqp_pi.php',
-                                'filepath' => 'plugins',
+                                'filename' => 'pqp_helper.php',
+                                'filepath' => 'helpers',
                                 'params'   => 'load_pqp'
                                 );
 
 $hook['pre_controller'][] = array(
                                 'class'    => NULL,
                                 'function' => 'pqp_static',
-                                'filename' => 'pqp_pi.php',
-                                'filepath' => 'plugins',
+                                'filename' => 'pqp_helper.php',
+                                'filepath' => 'helpers',
                                 'params'   => 'pqp_pre_controller'
                                 );
 
 $hook['post_controller_constructor'][] = array(
                                 'class'    => NULL,
                                 'function' => 'pqp_static',
-                                'filename' => 'pqp_pi.php',
-                                'filepath' => 'plugins',
+                                'filename' => 'pqp_helper.php',
+                                'filepath' => 'helpers',
                                 'params'   => 'pqp_post_controller_constructor'
+                                );
+
+$hook['post_controller_constructor'][] = array(
+                                'class'    => NULL,
+                                'function' => 'pqp_static',
+                                'filename' => 'pqp_helper.php',
+                                'filepath' => 'helpers',
+                                'params'   => 'pqp_benchmark_results'
                                 );
 
 $hook['post_controller'][] = array(
                                 'class'    => NULL,
                                 'function' => 'pqp_static',
-                                'filename' => 'pqp_pi.php',
-                                'filepath' => 'plugins',
+                                'filename' => 'pqp_helper.php',
+                                'filepath' => 'helpers',
                                 'params'   => 'pqp_post_controller'
                                 );
 

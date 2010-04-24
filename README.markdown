@@ -14,11 +14,11 @@ Both the original and my code is released under Creative Commons Attribution
 
 2. Copy the files from the download to the corresponding directories in your  
    application directory. Make sure you don't overwrite any of your own files  
-   if you've customized them. You may need to create the plugins directory  
+   if you've customized them. You may need to create the helpers directory  
    under application.  
    > config      => system/application/config  
    > libraries   => system/application/libraries  
-   > plugins     => system/application/plugins
+   > helpers     => system/helpers/plugins
 
 3. Once that's done, anywhere you enable the profiler using  
    `$this->output->enable_profiler(TRUE)`, you should see the new profiler
@@ -32,6 +32,12 @@ Both the original and my code is released under Creative Commons Attribution
 - It's not php4 compatible. If you use php4 still, think of this as a  
   fantastic perk you get once you finally upgrade. Oh and upgrade from  
   IE6 while you're at it too please ;)
+
+### Changes
+
+- April 23, 2010 
+  1. Converted this to work with CI2 beta. Plugins are no longer used.
+  2. Added new hook to get CI benchmark data. 
 
 ### Bugs
 

@@ -29,7 +29,7 @@ class MY_Profiler extends CI_Profiler {
 		    pqp_pi::pqp_benchmark_results();
 		    $output .= pqp_pi::$pqp_instance->display(pqp_pi::gen_pqp_db_results());
 		}
-
+		
 		return $output;
 	}
 
