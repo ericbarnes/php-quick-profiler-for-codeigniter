@@ -1,6 +1,6 @@
 <?php
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
  Title : HTML Output for Php Quick Profiler
  Author : Created by Ryan Campbell
@@ -16,30 +16,30 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 function displayPqp($output, $config) {
-	
+
 $cssUrl = $config.'css/pQp.css';
 
-echo '<style type="text/css" media="screen">' . 
+echo '<style type="text/css" media="screen">' .
         file_get_contents(dirname(__FILE__) . '/css/pQp.css') . '</style>';
-		
+
 echo <<<JAVASCRIPT
 <!-- JavaScript -->
 <script type="text/javascript">
 	var PQP_DETAILS = false;
 	var PQP_HEIGHT = "short";
-	
+
 	addEvent(window, 'load', loadCSS);
 
 	function changeTab(tab) {
 		if ( ! PQP_DETAILS) {
 		    toggleDetails();
 	    }
-		
+
 		var pQp = document.getElementById('pQp');
 		hideAllTabs();
 		addClassName(pQp, tab, true);
 	}
-	
+
 	function hideAllTabs() {
 		var pQp = document.getElementById('pQp');
 		removeClassName(pQp, 'console');
@@ -48,14 +48,14 @@ echo <<<JAVASCRIPT
 		removeClassName(pQp, 'memory');
 		removeClassName(pQp, 'files');
 	}
-	
+
 	function toggleDetails(){
 		var container = document.getElementById('pqp-container');
-		
+
 		if(PQP_DETAILS){
 			addClassName(container, 'hideDetails', true);
 			PQP_DETAILS = false;
-		} 
+		}
 		else
 		{
 			removeClassName(container, 'hideDetails');
@@ -64,7 +64,7 @@ echo <<<JAVASCRIPT
 	}
 	function toggleHeight(){
 		var container = document.getElementById('pqp-container');
-		
+
 		if(PQP_HEIGHT == "short"){
 			addClassName(container, 'tallDetails', true);
 			PQP_HEIGHT = "tall";
@@ -74,7 +74,7 @@ echo <<<JAVASCRIPT
 			PQP_HEIGHT = "short";
 		}
 	}
-	
+
 	function loadCSS() {
 		/*
 		var sheet = document.createElement("link");
@@ -85,8 +85,8 @@ echo <<<JAVASCRIPT
 		*/
 		setTimeout(function(){document.getElementById("pqp-container").style.display = "block"}, 10);
 	}
-	
-	
+
+
 	//http://www.bigbold.com/snippets/posts/show/2630
 	function addClassName(objElement, strClass, blnMayAlreadyExist){
 	   if ( objElement.className ){
@@ -103,7 +103,7 @@ echo <<<JAVASCRIPT
 	      arrList[arrList.length] = strClass;
 	      objElement.className = arrList.join(' ');
 	   }
-	   else{  
+	   else{
 	      objElement.className = strClass;
 	      }
 	}
@@ -129,15 +129,15 @@ echo <<<JAVASCRIPT
 	    obj["e"+type+fn] = fn;
 	    obj[type+fn] = function() { obj["e"+type+fn]( window.event ) };
 	    obj.attachEvent( "on"+type, obj[type+fn] );
-	  } 
+	  }
 	  else{
-	    obj.addEventListener( type, fn, false );	
+	    obj.addEventListener( type, fn, false );
 	  }
 	}
 </script>
 JAVASCRIPT;
 
-echo '<div id="pqp-container" class="pQp hideDetails" style="display:none">';
+echo '<div id="pqp-container" class="pQp" style="">';
 
 $logCount = isset($output['logs']['console']) ? count($output['logs']['console']) : 0;
 $fileCount = count($output['files']);
@@ -190,7 +190,7 @@ else {
 		</tr>
 		</table>
 		<table class="main" cellspacing="0">';
-		
+
 		$class = '';
 		foreach($output['logs']['console'] as $log) {
 			echo '<tr class="log-'.$log['type'].'">
@@ -208,12 +208,12 @@ else {
 			elseif($log['type'] == 'error') {
 				echo '<div><em>Line '.$log['line'].'</em> : '.$log['data'].' <pre>'.$log['file'].'</pre></div>';
 			}
-		
+
 			echo '</td></tr>';
 			if($class == '') $class = 'alt';
 			else $class = '';
 		}
-			
+
 		echo '</table>';
 }
 
@@ -230,7 +230,7 @@ else {
 		  <tr><td class="alt"><var>'.$output['speedTotals']['allowed'].'</var> <h4>Max Execution Time</h4></td></tr>
 		 </table>
 		<table class="main" cellspacing="0">';
-		
+
 		$class = '';
 		foreach($output['logs']['console'] as $log) {
 			if($log['type'] == 'speed') {
@@ -242,7 +242,7 @@ else {
 				else $class = '';
 			}
 		}
-			
+
 		echo '</table>';
 }
 
@@ -260,17 +260,17 @@ else {
 		  <tr><td><var>0</var> <h4>Duplicates</h4></td></tr>
 		 </table>
 		<table class="main" cellspacing="0">';
-		
+
 		$class = '';
 		foreach($output['queries'] as $query) {
 			echo '<tr>
 				<td class="'.$class.'">'.$query['sql'];
 			if(isset($query['explain'])) {
 					echo '<em>
-						Possible keys: <b>'.$query['explain']['possible_keys'].'</b> &middot; 
-						Key Used: <b>'.$query['explain']['key'].'</b> &middot; 
-						Type: <b>'.$query['explain']['type'].'</b> &middot; 
-						Rows: <b>'.$query['explain']['rows'].'</b> &middot; 
+						Possible keys: <b>'.$query['explain']['possible_keys'].'</b> &middot;
+						Key Used: <b>'.$query['explain']['key'].'</b> &middot;
+						Type: <b>'.$query['explain']['type'].'</b> &middot;
+						Rows: <b>'.$query['explain']['rows'].'</b> &middot;
 						Speed: <b>'.$query['time'].'</b>
 					</em>';
 			}
@@ -278,7 +278,7 @@ else {
 			if($class == '') $class = 'alt';
 			else $class = '';
 		}
-			
+
 		echo '</table>';
 }
 
@@ -295,7 +295,7 @@ else {
 		  <tr><td class="alt"><var>'.$output['memoryTotals']['total'].'</var> <h4>Total Available</h4></td></tr>
 		 </table>
 		<table class="main" cellspacing="0">';
-		
+
 		$class = '';
 		foreach($output['logs']['console'] as $log) {
 			if($log['type'] == 'memory') {
@@ -306,7 +306,7 @@ else {
 				else $class = '';
 			}
 		}
-			
+
 		echo '</table>';
 }
 
@@ -324,14 +324,14 @@ else {
 			<tr><td><var>'.$output['fileTotals']['largest'].'</var> <h4>Largest</h4></td></tr>
 		 </table>
 		<table class="main" cellspacing="0">';
-		
+
 		$class ='';
 		foreach($output['files'] as $file) {
 			echo '<tr><td class="'.$class.'"><b>'.$file['size'].'</b> '.$file['name'].'</td></tr>';
 			if($class == '') $class = 'alt';
 			else $class = '';
 		}
-			
+
 		echo '</table>';
 }
 
@@ -342,7 +342,7 @@ echo '
 		<tr>
 			<td class="credit">
 				<a href="http://particletree.com" target="_blank">
-				<strong>PHP</strong> 
+				<strong>PHP</strong>
 				<b class="green">Q</b><b class="blue">u</b><b class="purple">i</b><b class="orange">c</b><b class="red">k</b>
 				Profiler</a></td>
 			<td class="actions">
@@ -352,7 +352,7 @@ echo '
 		</tr>
 	</table>
 ';
-		
+
 echo '</div></div>';
 
 }
