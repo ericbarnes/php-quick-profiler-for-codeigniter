@@ -29,7 +29,28 @@ echo <<<JAVASCRIPT
 	var PQP_HEIGHT = "short";
 
 	addEvent(window, 'load', loadCSS);
-
+	addEvent(window, 'keydown', toggleKey);
+	
+	function toggleKey(e) {
+		var container = document.getElementById('pqp-container');
+		
+		if(e.keyCode == 40) { // Down
+			if(container.style.display == 'block' && PQP_DETAILS && PQP_HEIGHT == "short")
+				toggleDetails();
+			else if(container.style.display == 'block' && PQP_DETAILS && PQP_HEIGHT == "tall")
+				toggleHeight();
+			else
+				container.style.display = "none";
+		}else if(e.keyCode == 38){ // Up
+			if(container.style.display == 'block' && !PQP_DETAILS)
+				toggleDetails();
+			else if(container.style.display == 'block' && PQP_DETAILS && PQP_HEIGHT == "short")
+				toggleHeight();
+			else
+				container.style.display = "block";
+		}
+	}
+	
 	function changeTab(tab) {
 		if ( ! PQP_DETAILS) {
 		    toggleDetails();
